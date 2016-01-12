@@ -68,7 +68,7 @@ namespace CodehulkNET.MSBuild.Loggers.MinimalConsoleLogger
                 foreach (var warning in category.Value.OrderBy(w => w.Code))
                 {
                     Console.ForegroundColor = category.Key.Color;
-                    Console.WriteLine("\n[{4}] {0} ({1},{2}): {3}", Path.Combine(Path.GetDirectoryName(warning.ProjectFile), warning.File ?? string.Empty), warning.LineNumber, warning.ColumnNumber, warning.Message, warning.Code);
+                    Console.WriteLine("\n[{4}] {0} ({1},{2}): {3}", Path.Combine(string.IsNullOrWhiteSpace(warning.ProjectFile) ? string.Empty : Path.GetDirectoryName(warning.ProjectFile), warning.File), warning.LineNumber, warning.ColumnNumber, warning.Message, warning.Code);
                     Console.ResetColor();
                 }
             }
@@ -76,14 +76,14 @@ namespace CodehulkNET.MSBuild.Loggers.MinimalConsoleLogger
             foreach (var warning in _warnings.OrderBy(w => w.Code))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\n[{4}] {0} ({1},{2}): {3}", Path.Combine(Path.GetDirectoryName(warning.ProjectFile), warning.File ?? string.Empty), warning.LineNumber, warning.ColumnNumber, warning.Message, warning.Code);
+                Console.WriteLine("\n[{4}] {0} ({1},{2}): {3}", Path.Combine(string.IsNullOrWhiteSpace(warning.ProjectFile) ? string.Empty : Path.GetDirectoryName(warning.ProjectFile), warning.File), warning.LineNumber, warning.ColumnNumber, warning.Message, warning.Code);
                 Console.ResetColor();
             }
 
             foreach (var error in _errors)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n[{4}] {0} ({1},{2}): {3}", Path.Combine(Path.GetDirectoryName(error.ProjectFile), error.File ?? string.Empty), error.LineNumber, error.ColumnNumber, error.Message, error.Code);
+                Console.WriteLine("\n[{4}] {0} ({1},{2}): {3}", Path.Combine(string.IsNullOrWhiteSpace(error.ProjectFile) ? string.Empty : Path.GetDirectoryName(error.ProjectFile), error.File), error.LineNumber, error.ColumnNumber, error.Message, error.Code);
                 Console.ResetColor();
             }
 
