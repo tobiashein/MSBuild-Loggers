@@ -66,6 +66,9 @@ namespace CodehulkNET.MSBuild.Loggers.MinimalConsoleLogger
         {
             foreach (var category in _categories)
             {
+                if (category.Key.Name?.ToLowerInvariant() == "ignore")
+                    continue;
+
                 foreach (var warning in category.Value.OrderBy(w => w.Code))
                 {
                     Console.ForegroundColor = category.Key.Color;

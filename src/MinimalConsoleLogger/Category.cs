@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace CodehulkNET.MSBuild.Loggers.MinimalConsoleLogger
@@ -33,6 +34,19 @@ namespace CodehulkNET.MSBuild.Loggers.MinimalConsoleLogger
         /// </value>
         [XmlAttribute("Description")]
         public string Description
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the optional name of this category. The special name 'Ignore' is used to categorize warnings to be ignored.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        [XmlAttribute("Name")]
+        public string Name
         {
             get;
             set;
